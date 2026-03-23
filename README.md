@@ -1,3 +1,11 @@
+# RoadMatch
+
+> Blazing fast glob matcher — zero dependencies
+
+Part of the [BlackRoad OS](https://blackroad.io) ecosystem. Forked from [`micromatch/picomatch`](https://github.com/micromatch/picomatch).
+
+---
+
 <h1 align="center">Picomatch</h1>
 
 <p align="center">
@@ -136,12 +144,12 @@ For environments without `node.js`, `picomatch/posix` provides you a dependency-
 const picomatch = require('picomatch/posix');
 // the same API, defaulting to posix paths
 const isMatch = picomatch('a/*');
-console.log(isMatch('a\\b')); //=> false
+console.log(isMatch('a\b')); //=> false
 console.log(isMatch('a/b')); //=> true
 
 // you can still configure the matcher function to accept windows paths
 const isMatch = picomatch('a/*', { options: windows });
-console.log(isMatch('a\\b')); //=> true
+console.log(isMatch('a\b')); //=> true
 console.log(isMatch('a/b')); //=> true
 ```
 
@@ -505,7 +513,7 @@ isMatch('baz');
 | **Character** | **Description** |
 | --- | --- |
 | `*` | Matches any character zero or more times, excluding path separators. Does _not match_ path separators or hidden files or directories ("dotfiles"), unless explicitly enabled by setting the `dot` option to `true`. |
-| `**` | Matches any character zero or more times, including path separators. Note that `**` will only match path separators (`/`, and `\\` with the `windows` option) when they are the only characters in a path segment. Thus, `foo**/bar` is equivalent to `foo*/bar`, and `foo/a**b/bar` is equivalent to `foo/a*b/bar`, and _more than two_ consecutive stars in a glob path segment are regarded as _a single star_. Thus, `foo/***/bar` is equivalent to `foo/*/bar`. |
+| `**` | Matches any character zero or more times, including path separators. Note that `**` will only match path separators (`/`, and `\` with the `windows` option) when they are the only characters in a path segment. Thus, `foo**/bar` is equivalent to `foo*/bar`, and `foo/a**b/bar` is equivalent to `foo/a*b/bar`, and _more than two_ consecutive stars in a glob path segment are regarded as _a single star_. Thus, `foo/***/bar` is equivalent to `foo/*/bar`. |
 | `?` | Matches any character excluding path separators one time. Does _not match_ path separators or leading dots.  |
 | `[abc]` | Matches any characters inside the brackets. For example, `[abc]` would match the characters `a`, `b` or `c`, and nothing else. |
 
@@ -573,15 +581,15 @@ The following named POSIX bracket expressions are supported:
 
 * `[:alnum:]` - Alphanumeric characters, equ `[a-zA-Z0-9]`
 * `[:alpha:]` - Alphabetical characters, equivalent to `[a-zA-Z]`.
-* `[:ascii:]` - ASCII characters, equivalent to `[\\x00-\\x7F]`.
-* `[:blank:]` - Space and tab characters, equivalent to `[ \\t]`.
-* `[:cntrl:]` - Control characters, equivalent to `[\\x00-\\x1F\\x7F]`.
+* `[:ascii:]` - ASCII characters, equivalent to `[\x00-\x7F]`.
+* `[:blank:]` - Space and tab characters, equivalent to `[ \t]`.
+* `[:cntrl:]` - Control characters, equivalent to `[\x00-\x1F\x7F]`.
 * `[:digit:]` - Numerical digits, equivalent to `[0-9]`.
-* `[:graph:]` - Graph characters, equivalent to `[\\x21-\\x7E]`.
+* `[:graph:]` - Graph characters, equivalent to `[\x21-\x7E]`.
 * `[:lower:]` - Lowercase letters, equivalent to `[a-z]`.
-* `[:print:]` - Print characters, equivalent to `[\\x20-\\x7E ]`.
-* `[:punct:]` - Punctuation and symbols, equivalent to `[\\-!"#$%&\'()\\*+,./:;<=>?@[\\]^_`{|}~]`.
-* `[:space:]` - Extended space characters, equivalent to `[ \\t\\r\\n\\v\\f]`.
+* `[:print:]` - Print characters, equivalent to `[\x20-\x7E ]`.
+* `[:punct:]` - Punctuation and symbols, equivalent to `[\-!"#$%&\'()\*+,./:;<=>?@[\]^_`{|}~]`.
+* `[:space:]` - Extended space characters, equivalent to `[ \t\r\n\v\f]`.
 * `[:upper:]` - Uppercase letters, equivalent to `[A-Z]`.
 * `[:word:]` -  Word characters (letters, numbers and underscores), equivalent to `[A-Za-z0-9_]`.
 * `[:xdigit:]` - Hexadecimal digits, equivalent to `[A-Fa-f0-9]`.
@@ -605,8 +613,8 @@ To match any of the following characters as literals: `$^*+?()[]
 Examples:
 
 ```js
-console.log(pm.makeRe('foo/bar \\(1\\)'));
-console.log(pm.makeRe('foo/bar \\(1\\)'));
+console.log(pm.makeRe('foo/bar \(1\)'));
+console.log(pm.makeRe('foo/bar \(1\)'));
 ```
 
 <br>
